@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>API常用类</title>
+      <link href="/2023/10/07/API%E5%B8%B8%E7%94%A8%E7%B1%BB/"/>
+      <url>/2023/10/07/API%E5%B8%B8%E7%94%A8%E7%B1%BB/</url>
+      
+        <content type="html"><![CDATA[<h2 id="char字符数组转换成String的一种方式"><a href="#char字符数组转换成String的一种方式" class="headerlink" title="char字符数组转换成String的一种方式"></a>char字符数组转换成String的一种方式</h2><pre><code>    &#39;&#39;&#39;java        char [] arr = new char[]&#123;&#39;a&#39;, &#39;b&#39;, &#39;c&#39;&#125;;        String str = new String(arr);        System.out.println(str);    &#39;&#39;&#39;</code></pre><p> 输出为abc</p><h1 id="String类的方法"><a href="#String类的方法" class="headerlink" title="String类的方法"></a>String类的方法</h1><ol><li>public int length()            获取字符串的长度返回(就是字符个数</li><li>public char charAt(int index)        获取某个索引位置处的字符返回   </li><li>public char[] toCharArray():         将当前字符串转换成字符数组返回</li><li>public boolean equals(Object anObject)   判断当前字符串与另一个字符串的内容一样，一样返回true</li><li>public boolean equalsIgnoreCase(String anotherString)   判断当前字符串与另一个字符串的内容是否一样(忽略大小写)</li><li>public String substring(int beginIndex, int endIndex)    根据开始和结束索引进行截取，得到新的字符串(包前不包后)</li><li>public String substring(int beginIndex)      从传入的索引处截取，截取到末尾，得到新的字符串返回</li><li>public String replace(CharSequence target，CharSequence replacement)        使用新值，将字符串中的旧值替换，得到新的字符串</li><li>public boolean contains(CharSequence s)          判断字符串中是否包含了某个字符串</li><li>public boolean startswith(string prefix)            判断字符串是否以某个字符串内容开头，开头返回true，反之</li><li>public String[] split(string regex)              把字符串按照某个字符串内容分割，并返回字符串数组回来</li></ol>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关于主题配置位置的说明</title>
       <link href="/2023/09/22/%E5%85%B3%E4%BA%8E%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E4%BD%8D%E7%BD%AE%E7%9A%84%E8%AF%B4%E6%98%8E/"/>
       <url>/2023/09/22/%E5%85%B3%E4%BA%8E%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E4%BD%8D%E7%BD%AE%E7%9A%84%E8%AF%B4%E6%98%8E/</url>
