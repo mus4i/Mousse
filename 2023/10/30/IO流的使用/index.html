@@ -1,0 +1,467 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>IO流的使用 | 记忆</title><meta name="author" content="Mousse"><meta name="copyright" content="Mousse"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="FileInputStream类&#39;&#39;&#39; &#x2F;&#x2F;        File f1 &#x3D; new File(&quot;D:\\LearrnMoreJavaTest\\Test_1028_mousse\\src\\IOpackage\\heheda.txt&quot;); &#x2F;&#x2F;        f1.mkdirs();         FileInputStream f1 &#x3D; new">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IO流的使用">
+<meta property="og:url" content="http://example.com/2023/10/30/IO%E6%B5%81%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="记忆">
+<meta property="og:description" content="FileInputStream类&#39;&#39;&#39; &#x2F;&#x2F;        File f1 &#x3D; new File(&quot;D:\\LearrnMoreJavaTest\\Test_1028_mousse\\src\\IOpackage\\heheda.txt&quot;); &#x2F;&#x2F;        f1.mkdirs();         FileInputStream f1 &#x3D; new">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/yuuden.jpg">
+<meta property="article:published_time" content="2023-10-30T14:13:39.000Z">
+<meta property="article:modified_time" content="2023-11-01T08:33:36.967Z">
+<meta property="article:author" content="Mousse">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/yuuden.jpg"><link rel="shortcut icon" href="/img/yuuden.jpg"><link rel="canonical" href="http://example.com/2023/10/30/IO%E6%B5%81%E7%9A%84%E4%BD%BF%E7%94%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'IO流的使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-01 16:33:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/yuuden.jpg" onerror="onerror=null;src='/img/yuuden.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/yuuden.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="记忆"><span class="site-name">记忆</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">IO流的使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-30T14:13:39.000Z" title="发表于 2023-10-30 22:13:39">2023-10-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-01T08:33:36.967Z" title="更新于 2023-11-01 16:33:36">2023-11-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="IO流的使用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="FileInputStream类"><a href="#FileInputStream类" class="headerlink" title="FileInputStream类"></a>FileInputStream类</h2><pre><code>&#39;&#39;&#39;
+//        File f1 = new File(&quot;D:\\LearrnMoreJavaTest\\Test_1028_mousse\\src\\IOpackage\\heheda.txt&quot;);
+//        f1.mkdirs();
+        FileInputStream f1 = new FileInputStream(&quot;D:\\LearrnMoreJavaTest\\Test_1028_mousse\\heheda.txt&quot;); //获取源文件
+//        System.out.println(f1.read());  //读取第一个字节
+//        System.out.println(f1.read());  //读取第二个字节
+//        System.out.println(f1.read());  //读取第三个字节
+//        System.out.println(f1.read());  //读取第四个字节
+    int b;
+    while ((b = f1.read()) != -1)&#123;   //若读取到尽头， 则会返回负1
+        System.out.print(b);
+    &#125;
+    f1.close();   //流使用完必须关闭， 释放系统资源
+&#39;&#39;&#39;
+
+&#39;&#39;&#39;
+        FileInputStream f1 = new FileInputStream(&quot;Test_1028_mousse\\heheda.txt&quot;);
+
+        //        byte[] b1 = new byte[3];  //建立一个字节数组， 用以存放每次读取的字节， 数量根据要读取的字符决定
+        //        int len = f1.read(b1);  //返回当次读取的字节数量， 此时b1存储三个字节
+        //        String s = new String(b1); //返回当前读取的内容
+        //        System.out.println(len);
+        //        System.out.println(s);
+        //        int len2 = f1.read(b1);
+        //        System.out.println(new String(b1));
+        //        int len3 = f1.read(b1);
+        //        System.out.println(new String(b1));
+        //
+        //        int len4 = f1.read(b1);
+        //        System.out.println(new String(b1, 0, len4)); //从0开始读写， 到读取字节的数量。 读多少就倒多少
+
+               //循环输出  
+        //        int len;
+        //        byte [] b = new byte[3];
+        //        while ((len = f1.read(b) ) != -1 )&#123;
+        //            System.out.print(new String(b, 0, len));  //读多少倒多少
+        //        &#125;
+
+        //        File file1 = new File(&quot;Test_1028_mousse\\heheda.txt&quot;);
+        //        long length = file1.length();
+        //        byte[] b = new byte[(int) length];    //一次读完全部内容
+        //        int read = f1.read(b);
+        //        System.out.println(new String(b));
+    
+    f1.close();
+&#39;&#39;&#39;
+</code></pre>
+<h2 id="FileOutputStream类、"><a href="#FileOutputStream类、" class="headerlink" title="FileOutputStream类、"></a>FileOutputStream类、</h2><pre><code>&#39;&#39;&#39;
+    OutputStream f1 = new FileOutputStream(&quot;Test_1028_mousse/呵呵哒.txt&quot;);  //这是覆盖管道， 会覆盖原来的数据
+    f1.write(97);
+    f1.write(&#39;h&#39;);
+    byte[] b = &quot;呵呵哒呵呵哒呵呵哒&quot;.getBytes();   //getBytes方法将字符串拆分返回字符数组形式
+    f1.write(b);
+    f1.close();
+
+    OutputStream f2 = new FileOutputStream(&quot;Test_1028_mousse/呵呵哒呵呵哒.txt&quot;, true); //这是追加管道， 不会覆盖原来的数据
+    byte[] b2 = &quot;呵呵哒呵呵哒呵呵&quot;.getBytes();
+    f2.write(b2);
+    f2.write(&quot;\r\n&quot;.getBytes());  //\n换行不一定兼容全部平台， \r\n兼容全部平台
+    f2.write(b2);
+    f2.close();
+&#125;
+&#39;&#39;&#39;
+
+&#39;&#39;&#39;
+//复制案例
+    InputStream f1 = new FileInputStream(&quot;C:\\Users\\24084\\Desktop\\娱乐\\FuX.jpg&quot;);
+
+    OutputStream f2 = new FileOutputStream(&quot;C:\\Users\\24084\\Desktop\\娱乐\\FuXing.jpg&quot;);
+
+    int len;
+    byte[] b = new byte[1024];
+    while ((len = f1.read(b))!= -1)&#123;
+        f2.write(b, 0, len);
+    &#125;  
+    f2.close();                    //先关闭后创建的流
+    f1.close();                    //再关闭前创建的流
+    System.out.println(&quot;复制完成&quot;);
+
+&#39;&#39;&#39;
+
+下面是规范的写法：
+&#39;&#39;&#39;
+    InputStream f1 = null;
+    OutputStream f2 = null;
+    try &#123;
+        f1 = new FileInputStream(&quot;C:\\Users\\24084\\Desktop\\娱乐\\FuX.jpg&quot;);
+
+        f2 = new FileOutputStream(&quot;C:\\Users\\24084\\Desktop\\娱乐\\FuXingCopy2.jpg&quot;);
+
+        int len;
+        byte[] b = new byte[1024];
+        while ((len = f1.read(b)) != -1) &#123;
+            f2.write(b, 0, len);
+        &#125;
+    &#125; catch (IOException e) &#123;
+        e.printStackTrace();
+    &#125; finally &#123;
+        if (f2 != null) &#123;
+            try &#123;
+                f2.close();                    //先关闭后创建的流
+            &#125; catch (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+        if (f1 != null) &#123;
+            try &#123;
+                f1.close();                    //再关闭前创建的流
+                System.out.println(&quot;复制完成&quot;);
+            &#125; catch (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+
+    &#125;
+&#39;&#39;&#39;
+
+&#39;&#39;&#39; jdk7后的写法， try()括号里写流， 会自动释放， 可以省去finally
+        try(
+            InputStream f1 = new FileInputStream(&quot;C:\\Users\\24084\\Desktop\\娱乐\\FuX.jpg&quot;);
+
+            OutputStream f2 =  new FileOutputStream(&quot;C:\\Users\\24084\\Desktop\\娱乐\\Kafka&amp;Setelite.jpg&quot;);
+        ) &#123;
+            int len;
+            byte[] b = new byte[1024];
+            while ((len = f1.read(b))!= -1)&#123;
+                f2.write(b, 0, len);
+            &#125;
+        System.out.println(&quot;复制成功&quot;);
+
+    &#125; catch (IOException e) &#123;
+        e.printStackTrace();
+    &#125;
+&#39;&#39;&#39;
+</code></pre>
+<h2 id="FileReader字符流类的使用"><a href="#FileReader字符流类的使用" class="headerlink" title="FileReader字符流类的使用"></a>FileReader字符流类的使用</h2><pre><code>&#39;&#39;&#39;
+        try(Reader f1 = new FileReader(&quot;Test_1028_mousse\\呵呵哒呵呵哒.txt&quot;);) &#123;
+        int c; //记录每次读取的字符序号
+
+
+//            while ((c = f1.read())!= -1)&#123;
+//                System.out.print((char)c);    //把每次读取的字符序号转换成字符类型
+//            &#125;
+        char[] b = new char[3];  //创建字符串数组
+        while ((c = f1.read(b)) != -1) &#123;
+            System.out.print(new String(b, 0, c));   //写多少倒多少
+        &#125;
+
+    &#125; catch (Exception e) &#123;
+        e.printStackTrace();
+    &#125;
+&#39;&#39;&#39;
+</code></pre>
+<h2 id="FileWriter字符流类的使用"><a href="#FileWriter字符流类的使用" class="headerlink" title="FileWriter字符流类的使用"></a>FileWriter字符流类的使用</h2><pre><code>&#39;&#39;&#39;
+//        try(Writer f1 = new FileWriter(&quot;Test_1028_mousse\\呵呵哒o.txt&quot;);) &#123;
+//            f1.write(&#39;h&#39;);  //可以写一个字符
+//
+//            f1.write(&quot;呵呵哒&quot;);//可以写字符串
+//            char[] c = new char[]&#123;&#39;a&#39;, &#39;b&#39;, &#39;c&#39;&#125;;
+//            f1.write(c);  //可以写字符数组
+//            f1.write(c, 0 ,1);  //可以根据需求写字符数组， 从0个到1， 写a和b
+//            f1.write(&quot;\r\n&quot;);   //可直接写换行符
+//            f1.write(&quot;呵呵哒&quot;, 0, 1); //字符串同理
+//
+//        &#125; catch (IOException e) &#123;
+//            e.printStackTrace();
+//        &#125;
+
+    Writer f1 = new FileWriter(&quot;Test_1028_mousse\\\\呵呵哒2.txt&quot;);
+    f1.write(&quot;呵呵哒&quot;);
+    f1.write(&quot;呵呵哒&quot;);
+    f1.write(&quot;呵呵哒&quot;);
+    f1.flush();   //字符流使用完毕必须刷新或者关闭， 否则不会写出数据
+    //刷新后的流还可以继续使用
+    f1.write(&quot;\r\n&quot;);
+    f1.write(&quot;、、、、呵呵哒&quot;);
+    f1.flush();   //写完之后必须刷新， 或者关闭
+    f1.close();   //关闭流包含刷新流， 关闭后不能再使用流了。
+&#125;
+&#39;&#39;&#39;
+</code></pre>
+<h2 id="字节缓冲输入输出流"><a href="#字节缓冲输入输出流" class="headerlink" title="字节缓冲输入输出流"></a>字节缓冲输入输出流</h2><pre><code>&#39;&#39;&#39;
+
+    try (
+
+        InputStream f1 = new FileInputStream(&quot;Test_1028_mousse\\呵呵哒.txt&quot;);
+        InputStream f1h = new BufferedInputStream(f1);   //字节输入缓冲流
+
+        OutputStream f2 = new FileOutputStream(&quot;Test_1028_mousse\\呵呵哒3.txt&quot;);
+        OutputStream f2h = new BufferedOutputStream(f2);
+
+)&#123;
+        int len;
+        byte [] c=  new byte[1024];
+        while ((len = f1h.read(c))!=-1)&#123;
+            f2h.write(c, 0, len);
+        &#125;
+        System.out.println(&quot;复制完成&quot;);
+
+    &#125; catch (Exception e) &#123;
+        e.printStackTrace();
+    &#125;
+
+&#39;&#39;&#39;
+</code></pre>
+<h2 id="字符缓冲输入输出流"><a href="#字符缓冲输入输出流" class="headerlink" title="字符缓冲输入输出流"></a>字符缓冲输入输出流</h2><pre><code>&#39;&#39;&#39;
+        try ( FileReader f1 = new FileReader(&quot;Test_1028_mousse\\呵呵哒呵呵哒.txt&quot;);
+          BufferedReader b1 = new BufferedReader(f1);)&#123;
+//            System.out.println(b1.readLine());   //直接读取一行
+//            System.out.println(b1.readLine());
+//            System.out.println(b1.readLine());
+        String str;
+        while ((str = b1.readLine())!= null)&#123;
+            System.out.println(str);         //有多少行读多少行
+        &#125;
+
+    &#125; catch (Exception e) &#123;
+        e.printStackTrace();
+    &#125;
+&#39;&#39;&#39;
+</code></pre>
+<h2 id="字符输入转换流"><a href="#字符输入转换流" class="headerlink" title="字符输入转换流"></a>字符输入转换流</h2><pre><code>InputStreamReader类实现， 输出转换流同理。
+&#39;&#39;&#39;
+    try (InputStreamReader f1 = new InputStreamReader(new FileInputStream(&quot;D:\\LearrnMoreJavaTest\\Test_1028_mousse\\呵呵哒呵呵哒.txt&quot;), &quot;UTF-8&quot;);
+         BufferedReader b1 = new BufferedReader(f1);
+    )&#123;
+        String str;
+        while ((str = b1.readLine())!= null)&#123;
+            System.out.println(str);
+        &#125;
+
+
+    &#125; catch (Exception e) &#123;
+        e.printStackTrace();
+    &#125;
+&#39;&#39;&#39;
+</code></pre>
+<h2 id="字节字符打印流"><a href="#字节字符打印流" class="headerlink" title="字节字符打印流"></a>字节字符打印流</h2><p>printStream:<br>printWriter同理， 主要用打印功能<br>    ‘’’<br>            try (PrintStream p1 &#x3D; new PrintStream(“Test_1028_mousse\呵呵哒呵呵哒2.txt”);){<br>            p1.println(“呵呵哒”);   &#x2F;&#x2F;可以直接打印出去<br>            p1.println(“呵呵哒”);<br>            p1.println(“呵呵哒”);<br>            p1.write(97);</p>
+<pre><code>    &#125; catch (Exception e) &#123;
+        e.printStackTrace();
+    &#125;
+
+&#125;
+&#39;&#39;&#39;
+</code></pre>
+<h2 id="数据输入输出流"><a href="#数据输入输出流" class="headerlink" title="数据输入输出流"></a>数据输入输出流</h2><pre><code>&#39;&#39;&#39;  DataOutputStream: 写出数据
+        try (DataOutputStream d1 = new DataOutputStream(new FileOutputStream(&quot;Test_1028_mousse\\呵呵哒呵呵哒3.txt&quot;));
+//             DataInputStream d2 = new DataInputStream(new FileInputStream(&quot;Test_1028_mousse\\呵呵哒呵呵哒3.txt&quot;));
+
+    )&#123;
+        d1.writeInt(1);  //按指定类型写数据
+        d1.writeInt(2);
+        d1.writeInt(3);
+        d1.writeUTF(&quot;呵呵哒&quot;);
+        d1.writeUTF(&quot;呵呵哒&quot;);
+        d1.writeDouble(1.1);
+
+    &#125; catch (Exception e) &#123;
+        e.printStackTrace();
+    &#125;
+&#39;&#39;&#39;
+
+&#39;&#39;&#39;DataInputStream: 读入数据
+        try (DataInputStream d1 = new DataInputStream(new FileInputStream(&quot;Test_1028_mousse\\呵呵哒呵呵哒3.txt&quot;));)&#123;
+        System.out.println(d1.readInt());   //必须按写的顺序读， 并且指定类型
+        System.out.println(d1.readInt());
+        System.out.println(d1.readInt());
+        System.out.println(d1.readUTF());
+//            System.out.println(d1.readDouble());
+        System.out.println(d1.readUTF());
+        System.out.println(d1.readDouble());
+    &#125; catch (Exception e) &#123;
+        e.printStackTrace();
+    &#125;
+&#39;&#39;&#39;
+</code></pre>
+<h2 id="对象输入输出流"><a href="#对象输入输出流" class="headerlink" title="对象输入输出流"></a>对象输入输出流</h2><pre><code>&#39;&#39;&#39;
+    //ObjectOutputStream:  写入对象数据
+
+    try(ObjectOutputStream o1 = new ObjectOutputStream(new FileOutputStream(&quot;Test_1028_mousse\\呵呵哒呵呵哒4.txt&quot;));) &#123;
+        Users u1 = new Users(&quot;呵呵哒&quot;, 12);
+
+        o1.writeObject(u1);
+        System.out.println(&quot;对象序列化成功！&quot;);
+
+    &#125; catch (Exception e) &#123;
+        e.printStackTrace();
+    &#125;
+
+&#39;&#39;&#39;
+
+&#39;&#39;&#39;ObjectInputStream:读取对象数据
+        try (ObjectInputStream o1 = new ObjectInputStream(new FileInputStream(&quot;Test_1028_mousse\\呵呵哒呵呵哒4.txt&quot;));)&#123;
+
+        Users u = (Users)o1.readObject();
+        System.out.println(u.getName());
+        System.out.println(u.getAge());
+
+    &#125; catch (Exception e) &#123;
+        e.printStackTrace();
+    &#125;
+&#39;&#39;&#39;
+</code></pre>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Mousse</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/10/30/IO%E6%B5%81%E7%9A%84%E4%BD%BF%E7%94%A8/">http://example.com/2023/10/30/IO%E6%B5%81%E7%9A%84%E4%BD%BF%E7%94%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">记忆</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/yuuden.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/10/29/File%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/" title="File类的使用"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">File类的使用</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/yuuden.jpg" onerror="this.onerror=null;this.src='/img/yuuden.jpg'" alt="avatar"/></div><div class="author-info__name">Mousse</div><div class="author-info__description">顺遂无虞</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#FileInputStream%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">FileInputStream类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FileOutputStream%E7%B1%BB%E3%80%81"><span class="toc-number">2.</span> <span class="toc-text">FileOutputStream类、</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FileReader%E5%AD%97%E7%AC%A6%E6%B5%81%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">FileReader字符流类的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FileWriter%E5%AD%97%E7%AC%A6%E6%B5%81%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">FileWriter字符流类的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E7%BC%93%E5%86%B2%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81"><span class="toc-number">5.</span> <span class="toc-text">字节缓冲输入输出流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%BC%93%E5%86%B2%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81"><span class="toc-number">6.</span> <span class="toc-text">字符缓冲输入输出流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E8%BE%93%E5%85%A5%E8%BD%AC%E6%8D%A2%E6%B5%81"><span class="toc-number">7.</span> <span class="toc-text">字符输入转换流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E5%AD%97%E7%AC%A6%E6%89%93%E5%8D%B0%E6%B5%81"><span class="toc-number">8.</span> <span class="toc-text">字节字符打印流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81"><span class="toc-number">9.</span> <span class="toc-text">数据输入输出流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81"><span class="toc-number">10.</span> <span class="toc-text">对象输入输出流</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/30/IO%E6%B5%81%E7%9A%84%E4%BD%BF%E7%94%A8/" title="IO流的使用">IO流的使用</a><time datetime="2023-10-30T14:13:39.000Z" title="发表于 2023-10-30 22:13:39">2023-10-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/29/File%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/" title="File类的使用">File类的使用</a><time datetime="2023-10-29T09:28:51.000Z" title="发表于 2023-10-29 17:28:51">2023-10-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/22/%E9%9B%86%E5%90%88%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/" title="“集合类的使用”">“集合类的使用”</a><time datetime="2023-10-22T08:09:54.000Z" title="发表于 2023-10-22 16:09:54">2023-10-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/14/%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="单例设计模式">单例设计模式</a><time datetime="2023-10-14T03:40:02.000Z" title="发表于 2023-10-14 11:40:02">2023-10-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/07/API%E5%B8%B8%E7%94%A8%E7%B1%BB/" title="API常用类">API常用类</a><time datetime="2023-10-07T07:31:20.000Z" title="发表于 2023-10-07 15:31:20">2023-10-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Mousse</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
