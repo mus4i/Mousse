@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>特殊文件、日志</title>
+      <link href="/2023/11/01/%E7%89%B9%E6%AE%8A%E6%96%87%E4%BB%B6%E3%80%81%E6%97%A5%E5%BF%97/"/>
+      <url>/2023/11/01/%E7%89%B9%E6%AE%8A%E6%96%87%E4%BB%B6%E3%80%81%E6%97%A5%E5%BF%97/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Properties后缀文件"><a href="#Properties后缀文件" class="headerlink" title="Properties后缀文件"></a>Properties后缀文件</h2><pre><code>&#39;&#39;&#39;    Properties p = new Properties();    p.load(new FileReader(&quot;Test_1028_mousse\\src\\UserTest.properties&quot;)); //读出目标数据    System.out.println(p.getProperty(&quot;name&quot;));  //根据键读取值    System.out.println(p.getProperty(&quot;age&quot;));    System.out.println(p.getProperty(&quot;score&quot;));    Set&lt;String&gt; strs = p.stringPropertyNames();    for (String str : strs) &#123;        System.out.println(str+&quot;----&quot;+p.getProperty(str));  //遍历键值对    &#125;    p.forEach((k, v)-&gt; &#123;        System.out.println(k +&quot;--&quot;+v);   //遍历键值对    &#125;);&#39;&#39;&#39;&#39;&#39;&#39;    //写进属性    Properties p = new Properties();    p.setProperty(&quot;name&quot;, &quot;呵呵哒&quot;);    p.setProperty(&quot;age&quot;, &quot;12&quot;);    p.setProperty(&quot;score&quot;, &quot;97&quot;);    p.store(new FileWriter(&quot;Test_1028_mousse\\src\\UserTest2.properties&quot;), &quot;这里必须写注释&quot;);&#39;&#39;&#39;</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>IO流的使用</title>
       <link href="/2023/10/30/IO%E6%B5%81%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
       <url>/2023/10/30/IO%E6%B5%81%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
