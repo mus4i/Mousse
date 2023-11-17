@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>反射</title>
-      <link href="/2023/11/16/%E5%8F%8D%E5%B0%84-1/"/>
-      <url>/2023/11/16/%E5%8F%8D%E5%B0%84-1/</url>
+      <title>注解</title>
+      <link href="/2023/11/16/%E6%B3%A8%E8%A7%A3/"/>
+      <url>/2023/11/16/%E6%B3%A8%E8%A7%A3/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h2 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h2><pre><code>&#39;&#39;&#39; 自定义的注解public @interface Mytest1 &#123;String name();  //属性名必须加括号String value();  //特殊值value&#125;&#39;&#39;&#39;&#39;&#39;&#39;@Mytest1(name = &quot;呵呵哒&quot;, value = &quot;1000&quot;)public class test1 &#123;@Mytest1(name = &quot;呵呵哒&quot;, value = &quot;1000&quot;)  //不用带分号public void heheda()&#123;    //暂不知有什么用&#125;&#125;&#39;&#39;&#39;</code></pre><h2 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h2><p>元注解就是用来修饰注解的注解</p><pre><code>&#39;&#39;&#39;在注解上面添加注解, Target例@Target(ElementType.TYPE)  //表示该注解只能用在类或接口上public @interface Mytest2 &#123;    &#125;@Mytest2public class test2 &#123;//    @Mytest2 //这里报错， 因为这个注解只能用在类或接口上&#125;&#39;&#39;&#39;&#39;&#39;&#39;Retention例//@Retention(RetentionPolicy.SOURCE)//只作用在源码阶段， 字节码文件不存在//@Retention(RetentionPolicy.CLASS)//默认值 保留到字节码文件阶段，运行阶段不存在@Retention(RetentionPolicy.RUNTIME)  //开发常用， 一直保留到运行阶段public @interface Mytest3 &#123;    &#125;&#39;&#39;&#39;</code></pre><h2 id="解析注解"><a href="#解析注解" class="headerlink" title="解析注解"></a>解析注解</h2><pre><code>&#39;&#39;&#39;  定义注解@Target(&#123;ElementType.TYPE, ElementType.METHOD&#125;)@Retention(RetentionPolicy.RUNTIME)public @interface Mytest4 &#123;String value();double aaa();    String[] bbb();&#125;&#39;&#39;&#39;&#39;&#39;&#39;使用注解@Mytest4(value = &quot;111&quot;,aaa = 11.1,bbb = &#123;&quot;呵呵哒1&quot;&#125;)public class Demo &#123;    @Mytest4(value = &quot;222&quot;,aaa = 22.2,bbb = &#123;&quot;呵呵哒2&quot;&#125;)    public void test1()&#123;    &#125;&#125;&#39;&#39;&#39;&#39;&#39;&#39;解析注解public class AnnotationTest3 &#123;    @Test//获取类的注解内容    public void parceClass()&#123;        //先获取类对象        Class dc = Demo.class;        //判断该类是否包含某个注解        if (dc.isAnnotationPresent(Mytest4.class))&#123;            Mytest4 mytest4 = (Mytest4) dc.getDeclaredAnnotation(Mytest4.class);//获取这个注解            System.out.println(mytest4.value());    //获取注解的内容            System.out.println(mytest4.aaa());            System.out.println(Arrays.toString(mytest4.bbb()));        &#125;    &#125;    @Test //获取方法的注解内容    public void parceMethod() throws Exception&#123;        Class dc = Demo.class;        Method test1 = dc.getDeclaredMethod(&quot;test1&quot;);        //判断方法是否包含某个注解        if (test1.isAnnotationPresent(Mytest4.class))&#123;            Mytest4 methoddc = (Mytest4) test1.getDeclaredAnnotation(Mytest4.class);            System.out.println(methoddc.value());            System.out.println(methoddc.aaa());            System.out.println(Arrays.toString(methoddc.bbb()));        &#125;    &#125;&#125;&#39;&#39;&#39;</code></pre>]]></content>
       
       
       
