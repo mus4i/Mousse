@@ -1,0 +1,367 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Sql-DQL | 记忆</title><meta name="author" content="Mousse"><meta name="copyright" content="Mousse"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="DQL - 查询语句 -- 1，查询指定字段name, entrydate 并返回      select name, entrydate from tb_emp;  – 2. 查询返回所有字段 select * from tb_emp;&#x2F;&#x2F;一般不建议使用* 因为不直观， 性能差。  – 3. 查询所有员工的name, entrydate, 并起别名（姓名、 入职日期） select name a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sql-DQL">
+<meta property="og:url" content="http://example.com/2023/12/18/Sql-DQL/index.html">
+<meta property="og:site_name" content="记忆">
+<meta property="og:description" content="DQL - 查询语句 -- 1，查询指定字段name, entrydate 并返回      select name, entrydate from tb_emp;  – 2. 查询返回所有字段 select * from tb_emp;&#x2F;&#x2F;一般不建议使用* 因为不直观， 性能差。  – 3. 查询所有员工的name, entrydate, 并起别名（姓名、 入职日期） select name a">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/yuuden.jpg">
+<meta property="article:published_time" content="2023-12-18T08:32:36.000Z">
+<meta property="article:modified_time" content="2023-12-23T07:03:37.576Z">
+<meta property="article:author" content="Mousse">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/yuuden.jpg"><link rel="shortcut icon" href="/img/yuuden.jpg"><link rel="canonical" href="http://example.com/2023/12/18/Sql-DQL/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Sql-DQL',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-23 15:03:37'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/yuuden.jpg" onerror="onerror=null;src='/img/yuuden.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/yuuden.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="记忆"><span class="site-name">记忆</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Sql-DQL</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-18T08:32:36.000Z" title="发表于 2023-12-18 16:32:36">2023-12-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-23T07:03:37.576Z" title="更新于 2023-12-23 15:03:37">2023-12-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Sql-DQL"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2>DQL - 查询语句</h2><br>
+-- <b>1，查询指定字段name, entrydate 并返回</b>
+    
+<pre><code>select name, entrydate
+from tb_emp;
+</code></pre>
+<p>– <b>2. 查询返回所有字段</b></p>
+<pre><code>select * from tb_emp;//一般不建议使用* 因为不直观， 性能差。
+</code></pre>
+<p>– <b>3. 查询所有员工的name, entrydate, 并起别名（姓名、 入职日期）</b></p>
+<pre><code>select name as &quot;姓名&quot;, entrydate as &#39;入职日期&#39; -- 单引号双引号都可， as可以省去， 不加引号也可
+from tb_emp;
+</code></pre>
+<p>– <b>4. 查询已有的员工关联了哪几种职位（不要重复）</b>   </p>
+<pre><code>select distinct job from tb_emp;
+</code></pre>
+<br>
+<h3>条件查询</h3><br>
+
+<p>– <b>1.查询 姓名 为 杨逍 的员工</b></p>
+<pre><code>select id, username, password, name, gender, image, job, entrydate, create_time, update_time from tb_emp
+where name = &#39;杨逍&#39;;
+</code></pre>
+<p>– <b>2.查询 id小于等于5 的员工信息</b></p>
+<pre><code>select id, username, password, name, gender, image, job, entrydate, create_time, update_time from tb_emp
+where id &lt;= 5;
+</code></pre>
+<p>– <b>3.查询 没有分配职位 的员工信息</b></p>
+<pre><code>select id, username, password, name, gender, image, job, entrydate, create_time, update_time from tb_emp
+where job is null;
+</code></pre>
+<p>– <b>4.查询 有职位 的员工信息</b></p>
+<pre><code>select id, username, password, name, gender, image, job, entrydate, create_time, update_time from tb_emp
+where not job is null;
+
+-- 另一种写法
+select id, username, password, name, gender, image, job, entrydate, create_time, update_time from tb_emp
+where  job is not null;
+</code></pre>
+<p>– <b>5.查询 密码不等于123456 的员工信息</b></p>
+<pre><code>select id, username, password, name, gender, image, job, entrydate, create_time, update_time from tb_emp
+where not password  = &#39;123456&#39;;
+</code></pre>
+<p>– <b>6.查询 入职日期 在’2000-01-01’ (包含)到2010-01-01’(包含)之间的员工信息</b></p>
+<pre><code>select id, username, password, name, gender, image, job, entrydate, create_time, update_time from tb_emp
+where entrydate between &#39;2000-01-01&#39; and &#39;2010-01-01&#39;;
+</code></pre>
+<p>– <b>7.查询 入职时间 在‘2000-01-01’(包含)到2010-01-01’(包含)之间 且 性别为女 的员工信息</b></p>
+<pre><code>select id, username, password, name, gender, image, job, entrydate, create_time, update_time from tb_emp
+where entrydate between &#39;2000-01-01&#39; and &#39;2010-01-01&#39;
+and gender = &#39;2&#39;;
+</code></pre>
+<p>– <b>8.查询职位是2（讲师），3（学工主管），4（教研主管）的员工信息</b></p>
+<pre><code>select id, username, password, name, gender, image, job, entrydate, create_time, update_time from tb_emp
+where job = &#39;2&#39; or job = &#39;3&#39; or job = &#39;4&#39;;
+
+select id, username, password, name, gender, image, job, entrydate, create_time, update_time from tb_emp
+where job in (2, 3, 4); -- 优化写法， 多选一的关系
+</code></pre>
+<p>– <b>9.查询姓名为两个字的员工信息</b></p>
+<pre><code>select id, username, password, name, gender, image, job, entrydate, create_time, update_time from tb_emp
+where name like &#39;__&#39;;
+</code></pre>
+<p>– <b>10.查询姓张的员工信息</b></p>
+<pre><code>select id, username, password, name, gender, image, job, entrydate, create_time, update_time from tb_emp
+where name like &#39;张%&#39;;
+</code></pre>
+<br>
+<h3>聚合函数</h3><br>
+-- <b>1. 统计该企业员工数量</b>
+
+<pre><code>select count(*) from tb_emp; -- count(?) 值只要不为null即可统计， 一般建议使用*
+</code></pre>
+<p>– <b>2. 统计该企业最早入职的员工</b></p>
+<pre><code>select min(entrydate) from tb_emp;
+</code></pre>
+<p>– <b>3. 统计该企业最迟入职的员工</b></p>
+<pre><code>select max(entrydate) from tb_emp;
+</code></pre>
+<p>– <b>4. 统计该企业员工ID的平均值</b></p>
+<pre><code>select avg(id) from tb_emp;
+</code></pre>
+<p>– <b>5. 统计该企业员工的ID之和</b></p>
+<pre><code>select sum(id) from tb_emp;
+</code></pre>
+<br>
+<h3>分组查询</h3><br>
+-- <b>1.根据性别分组， 统计男性和女性员工的数量</b>
+
+<pre><code>select gender, count(*) from tb_emp group by gender;
+</code></pre>
+<p>– <b>2.先查询入职时间在’2015-01-01’（包含）以前的员工， 并对结果根据职位分组，获取员工数量大于等于2的职位</b></p>
+<pre><code>select job, count(*) from tb_emp where entrydate &lt;= &#39;2015-01-01&#39;
+group by job
+having count(*) &gt;= 2;
+</code></pre>
+<br>
+
+<h3>排序查询</h3><br>
+-- <b>1.根据入职时间， 对员工进行升序排序</b>
+
+<pre><code>select * from tb_emp
+order by entrydate asc; -- 默认就是升序排序， 所以asc可以省略不写
+</code></pre>
+<p>– <b>2.根据入职时间， 对员工进行降序排序</b></p>
+<pre><code>select id, username, password, name, gender, image, job, entrydate, create_time, update_time from tb_emp
+order by entrydate desc;
+</code></pre>
+<p>– <b>3.根据入职时间，对公司的员工进行升序排序， 入职时间相同， 再按照 更新时间进行降序排序</b></p>
+<pre><code>select id, username, password, name, gender, image, job, entrydate, create_time, update_time from tb_emp
+order by entrydate, update_time desc; -- 当第一个字段相同时， 第二个排序才会生效
+</code></pre>
+<br>
+<h3>分页查询</h3><br>
+-- <b>1. 从起始索引0开始查询员工数据， 每页展示5条数据</b>
+
+<pre><code>select * from tb_emp limit 0, 5;
+</code></pre>
+<p>– <b>2. 查询第1页员工数据， 每页展示5条记录</b></p>
+<pre><code>select * from tb_emp limit 0, 5;
+</code></pre>
+<p>– <b>3. 查询第2页员工数据， 每页展示5条记录</b></p>
+<pre><code>select * from tb_emp limit 5, 5;
+</code></pre>
+<p>– <b>4. 查询第3页员工数据， 每页展示5条记录</b></p>
+<pre><code>select * from tb_emp limit 10, 5;
+</code></pre>
+<h3>起始索引 = （页码数-1）* 每页展示记录数</h3><br>
+<h3>if在select中用法示例</h3><br>
+
+<pre><code>select if(gender=1, &#39;男性&#39;, &#39;女性&#39;)as &#39;性别&#39;, count(*)from tb_emp group by gender;-- 如果是1， 则性别展示男， 如果是女， 则性别展示女
+</code></pre>
+<br>
+<h3>case用法示例</h3><br>
+    case 字段名 when 值 then 要改的值, <br>
+               when 值 then 要改的值,<br>
+               else 要改的值<br>
+               end
+<br>
+
+<pre><code>select (case job when &#39;1&#39; then &#39;班主任&#39;
+        when &#39;2&#39; then &#39;讲师&#39;
+        when &#39;3&#39; then &#39;学工主管&#39;
+        when &#39;4&#39; then &#39;教研主管&#39;
+        else &#39;未分配职位&#39;
+        end) as &#39;职位&#39;, count(*)
+from tb_emp group by job;
+</code></pre>
+<br>
+
+<h3>内连接</h3><br>
+--<b>查询员工的姓名， 及说属的部门名称（隐式内连接实现）</b>
+
+<pre><code>select tb_emp.name, tb_dept.name from tb_emp, tb_dept where tb_emp.dept_id = tb_dept.id;
+</code></pre>
+<br>
+<h3>外连接</h3><br>
+-- <b>查询员工姓名， 及所属部门名称（显示内连接实现）</b>
+
+<pre><code>select tb_emp.name, tb_dept.name from tb_emp inner join tb_dept on tb_emp.dept_id = tb_dept.id;
+</code></pre>
+<h3>外连接</h3>  //实际开发一般用左外连接
+
+<p>– <b>查询员工表所有员工的姓名， 和对应的部门名称（左外连接）</b></p>
+<pre><code>select tb_emp.name, tb_dept.name from tb_emp left join tb_dept on tb_emp.dept_id = tb_dept.id;
+</code></pre>
+<p>0</p>
+<p>– <b>查询部门表所有部门的姓名， 和对应的员工名称（右外连接）</b></p>
+<pre><code>select tb_dept.name, tb_emp.name from tb_emp right join tb_dept on tb_dept.id = dept_id;
+</code></pre>
+<br>
+<h3>子查询</h3><br>
+标量子查询<br>
+-- <b>查询教研部所有的员工信息</b>
+
+<pre><code>select * from tb_emp where tb_emp.dept_id = (select id from tb_dept where name = &#39;教研部&#39;);
+</code></pre>
+<p>– <b>查询在方东白入职之后的员工信息</b></p>
+<pre><code>select * from tb_emp where entrydate &gt;
+       (select entrydate from tb_emp where tb_emp.name = &#39;方东白&#39;);
+</code></pre>
+<br>
+列子查询<br>
+
+<p>– <b>查询教研部和咨询部的所有员工信息</b></p>
+<pre><code>select * from tb_emp where tb_emp.dept_id in
+(select id from tb_dept where tb_dept.name = &#39;教研部&#39; or tb_dept.name = &#39;咨询部&#39;);
+</code></pre>
+<br>
+行子查询<br>
+-- <b>查询与韦一笑的入职日期及职位都相同的员工信息</b>
+    
+<pre><code>select * from tb_emp where (entrydate, job) = (select entrydate, job from tb_emp where name = &#39;韦一笑&#39;);
+</code></pre>
+<br>
+表子查询<br>
+-- <b>查询入职日期是“2006-01-01”之后的员工信息， 及其部门名称</b>
+
+<pre><code>select e.*, tb_dept.name from (select * from tb_emp where entrydate &gt;&#39;2006-01-01&#39;)e, tb_dept where e.dept_id = tb_dept.id;
+
+select tb_emp.*, tb_dept.name from tb_emp left join tb_dept on dept_id = tb_dept.id where entrydate&gt;&#39;2006-01-01&#39;;
+</code></pre>
+<br>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Mousse</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/12/18/Sql-DQL/">http://example.com/2023/12/18/Sql-DQL/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">记忆</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/yuuden.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/12/23/Mysql%E7%BB%93%E6%9E%84%E5%92%8C%E7%B4%A2%E5%BC%95/" title="Mysql结构和索引"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Mysql结构和索引</div></div></a></div><div class="next-post pull-right"><a href="/2023/12/17/Sql-DML/" title="Sql-DML"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Sql-DML</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/yuuden.jpg" onerror="this.onerror=null;this.src='/img/yuuden.jpg'" alt="avatar"/></div><div class="author-info__name">Mousse</div><div class="author-info__description">顺遂无虞</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">DQL - 查询语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text">条件查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.2.</span> <span class="toc-text">聚合函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.3.</span> <span class="toc-text">分组查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.4.</span> <span class="toc-text">排序查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.5.</span> <span class="toc-text">分页查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.6.</span> <span class="toc-text">起始索引 &#x3D; （页码数-1）* 每页展示记录数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.7.</span> <span class="toc-text">if在select中用法示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.8.</span> <span class="toc-text">case用法示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.9.</span> <span class="toc-text">内连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.10.</span> <span class="toc-text">外连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.11.</span> <span class="toc-text">外连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.12.</span> <span class="toc-text">子查询</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/23/Mysql%E7%BB%93%E6%9E%84%E5%92%8C%E7%B4%A2%E5%BC%95/" title="Mysql结构和索引">Mysql结构和索引</a><time datetime="2023-12-23T07:05:24.000Z" title="发表于 2023-12-23 15:05:24">2023-12-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/18/Sql-DQL/" title="Sql-DQL">Sql-DQL</a><time datetime="2023-12-18T08:32:36.000Z" title="发表于 2023-12-18 16:32:36">2023-12-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/17/Sql-DML/" title="Sql-DML">Sql-DML</a><time datetime="2023-12-17T13:41:39.000Z" title="发表于 2023-12-17 21:41:39">2023-12-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/17/Sql-DDL/" title="Sql-DDL">Sql-DDL</a><time datetime="2023-12-17T08:16:20.000Z" title="发表于 2023-12-17 16:16:20">2023-12-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/16/%E6%B3%A8%E8%A7%A3/" title="注解">注解</a><time datetime="2023-11-16T11:12:46.000Z" title="发表于 2023-11-16 19:12:46">2023-11-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Mousse</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
