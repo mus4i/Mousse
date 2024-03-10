@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Redis常用命令</title>
+      <link href="/2024/03/10/Redis%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+      <url>/2024/03/10/Redis%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<h1 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h1><h2 id="set-key-value"><a href="#set-key-value" class="headerlink" title="set key value"></a>set key value</h2><pre><code>set name mousse</code></pre><h2 id="get-key-返回value"><a href="#get-key-返回value" class="headerlink" title="get key  &#x2F;&#x2F;返回value"></a>get key  &#x2F;&#x2F;返回value</h2><pre><code>get name</code></pre><h2 id="setex-key-seconds-value-设置指定秒数有效期"><a href="#setex-key-seconds-value-设置指定秒数有效期" class="headerlink" title="setex key seconds value  &#x2F;&#x2F;设置指定秒数有效期"></a>setex key seconds value  &#x2F;&#x2F;设置指定秒数有效期</h2><pre><code>set name 30 mousse  //30s后自动消失</code></pre><h2 id="setnx-key-value-如若key不存在，-则创建"><a href="#setnx-key-value-如若key不存在，-则创建" class="headerlink" title="setnx key value &#x2F;&#x2F;如若key不存在， 则创建"></a>setnx key value &#x2F;&#x2F;如若key不存在， 则创建</h2><pre><code>setnx name mousse  //key name 已存在 所以不会创建</code></pre><h1 id="哈希操作命令"><a href="#哈希操作命令" class="headerlink" title="哈希操作命令"></a>哈希操作命令</h1><h2 id="hset-key-field-value"><a href="#hset-key-field-value" class="headerlink" title="hset key field value"></a>hset key field value</h2><pre><code>hset 100 name hehedahset 100 age 22</code></pre><h2 id="get-key-field-返回value"><a href="#get-key-field-返回value" class="headerlink" title="get key field  &#x2F;&#x2F;返回value"></a>get key field  &#x2F;&#x2F;返回value</h2><pre><code>hget 100 namehget 100 age</code></pre><h2 id="hdel-key-field-删除指定field"><a href="#hdel-key-field-删除指定field" class="headerlink" title="hdel key field  &#x2F;&#x2F;删除指定field"></a>hdel key field  &#x2F;&#x2F;删除指定field</h2><pre><code>hdel 100 name</code></pre><h2 id="hkeys-key-返回所有字段名称"><a href="#hkeys-key-返回所有字段名称" class="headerlink" title="hkeys key &#x2F;&#x2F;返回所有字段名称"></a>hkeys key &#x2F;&#x2F;返回所有字段名称</h2><pre><code>hkeys 100</code></pre><h2 id="hvals-100-返回指定key的所有值"><a href="#hvals-100-返回指定key的所有值" class="headerlink" title="hvals 100 &#x2F;&#x2F;返回指定key的所有值"></a>hvals 100 &#x2F;&#x2F;返回指定key的所有值</h2><pre><code>hvals 100</code></pre><h1 id="列表操作命令"><a href="#列表操作命令" class="headerlink" title="列表操作命令"></a>列表操作命令</h1><h2 id="lpush-key-value1-value2-将一个值或多个值插入列表头部"><a href="#lpush-key-value1-value2-将一个值或多个值插入列表头部" class="headerlink" title="lpush key value1 [value2] 将一个值或多个值插入列表头部"></a>lpush key value1 [value2] 将一个值或多个值插入列表头部</h2><pre><code>lpush mylist a b clpush mylist d</code></pre><h2 id="lrange-key-start-end-遍历列表，-指定从哪到哪"><a href="#lrange-key-start-end-遍历列表，-指定从哪到哪" class="headerlink" title="lrange key start end  &#x2F;&#x2F;遍历列表， 指定从哪到哪"></a>lrange key start end  &#x2F;&#x2F;遍历列表， 指定从哪到哪</h2><pre><code>lrange mylist 0 -1  //表示从头遍历到尾</code></pre><h2 id="rpop-key-移除尾部的值并返回"><a href="#rpop-key-移除尾部的值并返回" class="headerlink" title="rpop key  &#x2F;&#x2F;移除尾部的值并返回"></a>rpop key  &#x2F;&#x2F;移除尾部的值并返回</h2><pre><code>rpop mylist</code></pre><h2 id="llen-key-返回列表长度"><a href="#llen-key-返回列表长度" class="headerlink" title="llen key &#x2F;&#x2F;返回列表长度"></a>llen key &#x2F;&#x2F;返回列表长度</h2><pre><code>llen mylist</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Mysql结构和索引</title>
       <link href="/2023/12/23/Mysql%E7%BB%93%E6%9E%84%E5%92%8C%E7%B4%A2%E5%BC%95/"/>
       <url>/2023/12/23/Mysql%E7%BB%93%E6%9E%84%E5%92%8C%E7%B4%A2%E5%BC%95/</url>
