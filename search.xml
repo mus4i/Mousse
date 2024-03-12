@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>HttpClient</title>
+      <link href="/2024/03/11/HttpClient/"/>
+      <url>/2024/03/11/HttpClient/</url>
+      
+        <content type="html"><![CDATA[<h1 id="JAVA中操作httpclient"><a href="#JAVA中操作httpclient" class="headerlink" title="JAVA中操作httpclient"></a>JAVA中操作httpclient</h1><h2 id="Get"><a href="#Get" class="headerlink" title="Get"></a>Get</h2><pre><code>    //创建httpclient对象    CloseableHttpClient httpClient = HttpClients.createDefault();    //创建请求对象    HttpGet httpGet = new HttpGet(&quot;http://localhost:80/user/shop/status&quot;);    //发送请求， 接受响应结果    CloseableHttpResponse response = httpClient.execute(httpGet);    //获取服务端返回的状态码    int statusCode = response.getStatusLine().getStatusCode();    System.out.println(&quot;服务端返回的状态码为：&quot; + statusCode);    HttpEntity entity = response.getEntity();    String body = EntityUtils.toString(entity);    System.out.println(&quot;服务端返回的数据为：&quot; + body);    //关闭资源    response.close();    httpClient.close();    </code></pre><h2 id="Post"><a href="#Post" class="headerlink" title="Post"></a>Post</h2><pre><code>    //创建httpclient对象    CloseableHttpClient httpClient = HttpClients.createDefault();    //创建请求对象    HttpPost httpPost = new HttpPost(&quot;http://localhost:8080/admin/employee/login&quot;);    JSONObject jsonObject = new JSONObject();    jsonObject.put(&quot;username&quot;, &quot;admin&quot;);    jsonObject.put(&quot;password&quot;, &quot;123456&quot;);    StringEntity stringEntity = new StringEntity(jsonObject.toString());    //指定请求编码方式    stringEntity.setContentEncoding(&quot;utf-8&quot;);    //数据格式    stringEntity.setContentType(&quot;application/json&quot;);    httpPost.setEntity(stringEntity);    //发送请求    CloseableHttpResponse response = httpClient.execute(httpPost);    int statusCode = response.getStatusLine().getStatusCode();    System.out.println(&quot;响应码为：&quot; + statusCode);    HttpEntity entity = response.getEntity();    String body = EntityUtils.toString(entity);    System.out.println(&quot;相应数据为：&quot; + body);    //关闭资源    response.close();    httpClient.close();</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Redis常用命令</title>
       <link href="/2024/03/10/Redis%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
       <url>/2024/03/10/Redis%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
